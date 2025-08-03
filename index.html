@@ -56,7 +56,7 @@ document.getElementById("foodLink").addEventListener("click", function(e) {
 
 <a href="https://www.foodnetwork.com/search/food-details-" id="foodLink2" target="_blank" rel="noopener noreferrer">
     Food Network details
-</a>
+</a><br><br>
 
 <script>
 document.getElementById("foodLink2").addEventListener("click", function(e) {
@@ -73,6 +73,18 @@ document.getElementById("foodLink2").addEventListener("click", function(e) {
   // Для обычных браузеров — стандартное поведение
   window.open(url, "_blank", "noopener,noreferrer");
 });
+</script>
+
+
+
+<a href="https://www.foodnetwork.com" id="foodLink3" target="_blank" rel="noopener noreferrer">
+    Food Network (with Telegram check)
+</a>
+
+<script>
+if (/Telegram/i.test(navigator.userAgent)) {
+  document.getElementById("foodLink3").removeAttribute("target");
+}
 </script>
 
 
