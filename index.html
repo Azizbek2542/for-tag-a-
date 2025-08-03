@@ -51,5 +51,30 @@ document.getElementById("foodLink").addEventListener("click", function(e) {
 });
 </script>
 
+
+
+
+<a href="https://www.foodnetwork.com/search/food-details-" id="foodLink2" target="_blank" rel="noopener noreferrer">
+    Food Network details
+</a>
+
+<script>
+document.getElementById("foodLink2").addEventListener("click", function(e) {
+  e.preventDefault();
+
+  const url = this.href;
+
+  // Если Telegram (любой телефон) → открыть в новом окне без встроенного браузера
+  if (/Telegram/i.test(navigator.userAgent)) {
+    window.location.href = url; // Telegram предложит "Открыть в браузере"
+    return;
+  }
+
+  // Для обычных браузеров — стандартное поведение
+  window.open(url, "_blank", "noopener,noreferrer");
+});
+</script>
+
+
 </body>
 </html>
