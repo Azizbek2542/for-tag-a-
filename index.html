@@ -12,5 +12,44 @@
     <p>https://www.foodnetwork.com, target="_blank", rel="noopener noreferrer"</p><a href="https://www.foodnetwork.com" target="_blank" rel="noopener noreferrer">Food Network</a>
     <p>intent://www.foodnetwork.com#Intent;scheme=https;package=com.android.chrome;end</p><a href="intent://www.foodnetwork.com#Intent;scheme=https;package=com.android.chrome;end">Food Network</a>
     <p>onclick="window.open(this.href, '_system'); return false;</p><a href="https://www.foodnetwork.com" onclick="window.open(this.href, '_system'); return false;">Food Network</a>
+
+
+
+<p>good способ через хром</p>
+    <a href="https://www.foodnetwork.com" id="foodLink" target="_blank" rel="noopener noreferrer">
+    Food Network
+</a><br><br>
+
+<a href="https://www.foodnetwork.com/search/menu-" id="foodLink" target="_blank" rel="noopener noreferrer">
+    Food Network Menu
+</a><br><br>
+
+<a href="https://www.foodnetwork.com/site/about-foodnetwork-com" id="foodLink" target="_blank" rel="noopener noreferrer">
+    Food Network About Page
+</a><br><br>
+
+<script>
+document.getElementById("foodLink").addEventListener("click", function(e) {
+  e.preventDefault(); // чтобы не сработал обычный переход
+
+  const url = this.href;
+
+  // Если Android и Telegram → открываем Chrome напрямую
+  if (/Android/i.test(navigator.userAgent) && /Telegram/i.test(navigator.userAgent)) {
+    location.href = `intent://${url.replace(/^https?:\/\//, "")}#Intent;scheme=https;package=com.android.chrome;end`;
+    return;
+  }
+
+  // Если iPhone и Telegram → просим открыть в Safari
+  if (/iPhone|iPad|iPod/i.test(navigator.userAgent) && /Telegram/i.test(navigator.userAgent)) {
+    location.href = url; // Telegram предложит "Открыть в Safari"
+    return;
+  }
+
+  // Во всех остальных случаях — просто новая вкладка
+  window.open(url, "_blank", "noopener,noreferrer");
+});
+</script>
+
 </body>
 </html>
